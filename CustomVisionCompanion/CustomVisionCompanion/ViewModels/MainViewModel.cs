@@ -22,6 +22,15 @@ namespace CustomVisionCompanion.ViewModels
         private readonly IMediaService mediaService;
 
         private IEnumerable<string> predictions;
+
+        private IEnumerable<string> carPredictions;
+
+        public IEnumerable<string> CarPredictions
+        {
+            get => carPredictions;
+            set => Set(ref carPredictions, value);
+        }
+
         public IEnumerable<string> Predictions
         {
             get => predictions;
@@ -77,12 +86,19 @@ namespace CustomVisionCompanion.ViewModels
 
                     // Check whether to use the online or offline version of the prediction model.
                     IEnumerable<Recognition> predictionsRecognized = null;
+                    IEnumerable<Recognition> predictionsCarRecognized = null;
                     if (isOffline)
                     {
                         var classifier = CrossOfflineClassifier.Current;
                         predictionsRecognized = await classifier.RecognizeAsync(file.GetStream(), file.Path);
+                       var predictionsRec = predictionsRecognized.ToArray();
+                        if(predictionsRec[0].Tag == "cars" && predictionsRec[0].Probability > 0.7)
+                        {
+                            var carClassifier = CrossOfflineCarClassifier.Current;
+                            predictionsCarRecognized = await carClassifier.RecognizeAsync(file.GetStream(), file.Path);
 
-                        
+                        }
+                                                
                     }
                     else
                     {
@@ -91,6 +107,7 @@ namespace CustomVisionCompanion.ViewModels
                     }
 
                     Predictions = predictionsRecognized.Select(p => $"{p.Tag}: {p.Probability:P1}");
+                    CarPredictions = predictionsCarRecognized.Select(p => $"{p.Tag}: {p.Probability:P1}");
                     
                     file.Dispose();
                 }

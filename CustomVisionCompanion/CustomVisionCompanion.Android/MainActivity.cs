@@ -26,7 +26,7 @@ namespace CustomVisionCompanion.Droid
 
             var task = CrossOfflineClassifier.Current.InitializeAsync(ModelType.General, "model.pb", "labels.txt");
             
-            var poscheTask = CrossOfflineCarClassifier.Current.InitializeAsync(ModelType.General, "poschemodel.pb", "labels1.txt");
+            var poscheTask = CrossOfflineCarClassifier.Current.InitializeAsync(ModelType.General, "porschemodel.pb", "porschelabels.txt");
 
         }
 

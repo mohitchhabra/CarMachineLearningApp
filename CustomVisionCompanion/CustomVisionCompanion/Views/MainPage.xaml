@@ -89,6 +89,29 @@
                 </OnPlatform>
             </ListView.Margin>
         </ListView>
+        
+        <ListView
+            Grid.Column="1"
+            CachingStrategy="RecycleElementAndDataTemplate"
+            ItemsSource="{Binding CarPredictions}"
+            SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label
+                            FontSize="Medium"
+                            Text="{Binding .}"
+                            VerticalOptions="Center" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="UWP">12,12,12,12</On>
+                    <On Platform="Android, iOS">0,1,12,12</On>
+                </OnPlatform>
+            </ListView.Margin>
+        </ListView>
 
         <ActivityIndicator
             Grid.ColumnSpan="2"

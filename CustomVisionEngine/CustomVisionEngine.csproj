@@ -72,8 +72,4 @@
   <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
     <Compile Include="Platforms\iOS\**\*.cs" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="Shared\CrossOfflineCarClassifier.cs" />
-  </ItemGroup>
 </Project>
