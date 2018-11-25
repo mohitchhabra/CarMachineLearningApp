@@ -37,7 +37,7 @@ namespace CustomVisionCompanion.ViewModels
             set => Set(ref predictions, value);
         }
 
-        private bool isOffline;
+        private bool isOffline = true;
         public bool IsOffline
         {
             get => isOffline;
@@ -96,7 +96,11 @@ namespace CustomVisionCompanion.ViewModels
                         {
                             var carClassifier = CrossOfflineCarClassifier.Current;
                             predictionsCarRecognized = await carClassifier.RecognizeAsync(file.GetStream(), file.Path);
-
+                            CarPredictions = predictionsCarRecognized.Select(p => $"{p.Tag}: {p.Probability:P1}");
+                        }
+                        else
+                        {
+                            CarPredictions = Enumerable.Empty<string>();
                         }
                                                 
                     }
@@ -107,7 +111,7 @@ namespace CustomVisionCompanion.ViewModels
                     }
 
                     Predictions = predictionsRecognized.Select(p => $"{p.Tag}: {p.Probability:P1}");
-                    CarPredictions = predictionsCarRecognized.Select(p => $"{p.Tag}: {p.Probability:P1}");
+                   
                     
                     file.Dispose();
                 }

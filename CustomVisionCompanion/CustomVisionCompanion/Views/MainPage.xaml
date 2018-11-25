@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:common="clr-namespace:CustomVisionCompanion.Common"
     xmlns:local="clr-namespace:CustomVisionCompanion"
-    Title="Custom Vision Companion"
+    Title="Medialesson Porsche App"
     BindingContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}">
 
     <ContentPage.ToolbarItems>
@@ -49,7 +49,7 @@
         </Grid.ColumnDefinitions>
 
         <StackLayout Grid.Column="0" Margin="5,10,5,5">
-            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+            <!--<StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                 <Label
                     Style="{StaticResource SwitchLabelStyle}"
                     Text="Online"
@@ -59,7 +59,7 @@
                     Style="{StaticResource SwitchLabelStyle}"
                     Text="Offline"
                     VerticalOptions="Center" />
-            </StackLayout>
+            </StackLayout>-->
             <Image
                 Margin="12"
                 Aspect="AspectFit"
