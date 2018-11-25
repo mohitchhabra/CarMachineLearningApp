@@ -92,7 +92,7 @@
             </ListView.Margin>
         </ListView>
         
-        <ListView
+        <!--<ListView
             Grid.Column="1"
             Grid.Row="1"
             CachingStrategy="RecycleElementAndDataTemplate"
@@ -115,7 +115,92 @@
                     <On Platform="Android, iOS">0,10,12,12</On>
                 </OnPlatform>
             </ListView.Margin>
-        </ListView>
+        </ListView>-->
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:padding="5dp">
+            <android.support.v7.widget.CardView
+        android:layout_width="fill_parent"
+        android:layout_height="245dp"
+        android:layout_gravity="center_horizontal">
+                <TextView
+            android:text="Power: "
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+                <TextView
+            android:text="{Binding Car.Power}"
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+                <TextView
+            android:text="Accelaration: "
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+            <TextView
+            android:text="{Binding Car.Accelaration}"
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+                <TextView
+            android:text="RPM: "
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+                <TextView
+            android:text="{Binding Car.Rpm}"
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+                <TextView
+            android:text="Top Speed: "
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+                <TextView
+            android:text="{Binding Car.TopSpeed}"
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
 
         <ActivityIndicator
             Grid.ColumnSpan="2"
