@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<common:ContentPageBase
+    x:Class="CustomVisionCompanion.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:common="clr-namespace:CustomVisionCompanion.Common"
+    xmlns:local="clr-namespace:CustomVisionCompanion"
+    Title="Custom Vision Companion"
+    BindingContext="{Binding Source={StaticResource Locator}, Path=MainViewModel}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding TakePhotoCommand}"
+            Order="Primary"
+            Priority="0"
+            Text="Take photo">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android">ic_action_photo_camera.png</On>
+                    <On Platform="iOS">Images/photo_camera.png</On>
+                    <On Platform="UWP">Assets/AppBar/TakePhoto.png</On>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem
+            Command="{Binding PickPhotoCommand}"
+            Order="Primary"
+            Priority="1"
+            Text="Pick photo">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android">ic_action_photo_library.png</On>
+                    <On Platform="iOS">Images/photo_library.png</On>
+                    <On Platform="UWP">Assets/AppBar/PickPhoto.png</On>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem
+            Command="{Binding SettingsCommand}"
+            Order="Secondary"
+            Priority="0"
+            Text="Settings..." />
+    </ContentPage.ToolbarItems>
+
+    <Grid Style="{StaticResource MasterGridStyle}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackLayout Grid.Column="0" Margin="5,10,5,5">
+            <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                <Label
+                    Style="{StaticResource SwitchLabelStyle}"
+                    Text="Online"
+                    VerticalOptions="Center" />
+                <Switch IsToggled="{Binding IsOffline, Mode=TwoWay}" />
+                <Label
+                    Style="{StaticResource SwitchLabelStyle}"
+                    Text="Offline"
+                    VerticalOptions="Center" />
+            </StackLayout>
+            <Image
+                Margin="12"
+                Aspect="AspectFit"
+                Source="{Binding ImagePath}"
+                VerticalOptions="Start" />
+        </StackLayout>
+
+        <ListView
+            Grid.Column="1"
+            CachingStrategy="RecycleElementAndDataTemplate"
+            ItemsSource="{Binding Predictions}"
+            SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label
+                            FontSize="Medium"
+                            Text="{Binding .}"
+                            VerticalOptions="Center" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="UWP">12,12,12,12</On>
+                    <On Platform="Android, iOS">0,1,12,12</On>
+                </OnPlatform>
+            </ListView.Margin>
+        </ListView>
+
+        <ActivityIndicator
+            Grid.ColumnSpan="2"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}" />
+    </Grid>
+</common:ContentPageBase>
